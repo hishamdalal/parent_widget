@@ -29,3 +29,7 @@ Include sub classes within a parent widget (nested widgets)
 
 ## 7
 ![7](https://github.com/hishamdalal/parent_widget/blob/master/screenshot/7.PNG?raw=true "Screenshot")
+
+
+##Problem:
+You have to change fields value before publish changes.
