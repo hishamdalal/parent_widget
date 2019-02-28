@@ -1,6 +1,10 @@
 # parent_widget
 Include sub classes within a parent widget (nested widgets)
 
+# img 
+![Alt text](https://github.com/hishamdalal/parent_widget/blob/master/screenshot/7.PNG?raw=true "Title")
+
+
 # How to use?
 1. Download the project and unzip it in your wordpress themes.
 2. Go to your apeareance and activate it.
