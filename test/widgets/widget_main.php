@@ -1,5 +1,5 @@
 <?php/*************************************** * Project: Parent widget * Version: 1.0 * Created: 2019-02-28 * Author: Hisham Dalal <hishamdalal@gmail.com> * License: GNU General Public License v3.0s ***************************************/  defined( 'ABSPATH' ) || exit; // Exit if accessed directlyadd_action( 'widgets_init', function(){register_widget( TEXT_DOMAIN.'_main' );});
-/* # How to get widget options outside widget$options = get_option( 'widget_test_main' );pre($options[3]);*/class Test_main extends WP_Widget {	private $obj = '';	private $files = [];	
+/* # How to get widget options outside widget$options = get_option( 'widget_test_main' );pre($options[3]);*/class Test_main extends WP_Widget {	private $obj = '';	private $files = [];	private $default = [];	
 	function __construct() {
 		parent::__construct(__CLASS__, __('Test widget', TEXT_DOMAIN));				$this->files = $this->get_files();				$this->default['title'] = 'Test widget';		$this->default['file']  = 'widget1';	}	//--------------------------------------------------------------------------------------------//	// front-end
 	//--------------------------------------------------------------------------------------------//
@@ -9,12 +9,12 @@
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e('Title'); ?></label> 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" 				name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" 				value="<?php echo esc_attr( $title ); ?>" />
 		</p>		<div class="form-group">			<label for="<?=($this->get_field_id( 'file' )); ?>"><?=__( 'File', TEXT_DOMAIN ); ?></label>			<select class="widefat form-control" name="<?=($this->get_field_name( 'file' )); ?>" id="<?=($this->get_field_id('file' )); ?>">				<option value="0" <?php selected('0', $file); ?>><?=__('None'); ?></option>				<?php				foreach ($this->files as $value) :					?>					<option value="<?=($value); ?>" <?php selected($value, $file); ?>><?=($value); ?></option>					<?php				endforeach;				?>			</select>		</div>
-		<?php		$this->inc($file);				if($this->obj){			$this->obj->form($instance);		}
+		<?php		$this->inc($file);				if($this->obj){			$this->obj->form($instance['sub']);		}
 	}	//--------------------------------------------------------------------------------------------//
 	// Updating widget replacing old instances with new	//--------------------------------------------------------------------------------------------//	public function update( $new_instance, $old_instance ) {		$instance = $old_instance;		
 		$instance['title'] 	= ( ! empty( $new_instance['title'] ) ) ? esc_attr( $new_instance['title'] ) : esc_attr( @$old_instance['title'] );		$instance['file'] 	= ( ! empty( $new_instance['file'] ) ) ? esc_attr($new_instance['file'])  : @$old_instance['file'];        		$file = $instance['file'];		$this->inc($file);		$this->obj->update( $instance, $old_instance );				if($this->obj){						##$new_instance = $new_instance[$file];			#$old_instance = $old_instance[$file];						$instance['sub'] = $this->obj->update( $new_instance, $old_instance );			 			/* $instance_obj = $this->obj->update( $new_instance, $instance );			foreach($instance_obj[$file] as $key=>$value){				$instance[$key] = $value;			} */		}
 		return $instance;
-	}	//--------------------------------------------------------------------------------------------//		public function view($args, $instance){		#extract($instance);		$this->inc($instance['file']);				$title = apply_filters( 'widget_title', @$instance['title'] );		if($this->obj){			$this->obj->view($args, $instance);		}		pre($instance, __method__);	}	//--------------------------------------------------------------------------------------------//
+	}	//--------------------------------------------------------------------------------------------//		public function view($args, $instance){		#extract($instance);		$this->inc($instance['file']);				$title = apply_filters( 'widget_title', @$instance['title'] );		if($this->obj){			$this->obj->view($args, $instance['sub']);		}		pre($instance, __method__);	}	//--------------------------------------------------------------------------------------------//
 } // Class ends here
 
 
