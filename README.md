@@ -1,5 +1,5 @@
 # parent_widget
-Include sub classes within a parent widget
+Include sub classes within a parent widget (nested widgets)
 
 # How to use?
 1. Download the project and unzip it in your wordpress themes.
