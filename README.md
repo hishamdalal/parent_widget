@@ -1,8 +1,10 @@
 # parent_widget
 Include sub classes within a parent widget (nested widgets)
 
-# img 
-![Alt text](https://github.com/hishamdalal/parent_widget/blob/master/screenshot/7.PNG?raw=true "Title")
+# Screenshot 
+![1](https://github.com/hishamdalal/parent_widget/blob/master/screenshot/7.PNG?raw=true "Screenshot")
+
+![2](https://github.com/hishamdalal/parent_widget/blob/master/screenshot/6.PNG?raw=true "Screenshot")
 
 
 # How to use?
